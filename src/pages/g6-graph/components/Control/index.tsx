@@ -10,6 +10,8 @@ import { GraphinContext } from '@antv/graphin';
 import { ToolBarItemType } from '@antv/graphin-components/lib/Toolbar';
 import { Popover, Radio, RadioChangeEvent, Tooltip } from 'antd';
 import React from 'react';
+import { GRAPHIN_CONTAINER_DOM_ID } from '../..';
+import useFullscreen from '../useFullscreen';
 import styles from './index.less';
 import { graphLayoutConfig } from './LayoutConfig';
 import { EGraphLayoutType } from './typings';
@@ -21,13 +23,17 @@ const Control: React.FC<{
   const { apis, graph } = React.useContext(GraphinContext);
   const { handleZoomIn, handleZoomOut, handleAutoZoom, handleRealZoom } = apis;
 
+  const graphinContainer = document.getElementById(
+    GRAPHIN_CONTAINER_DOM_ID,
+  ) as HTMLElement;
+  const [fullscreen, toggleFullscreen] = useFullscreen(graphinContainer);
+
   const handleLayoutChange = (e: RadioChangeEvent) => {
     const nextLayout: EGraphLayoutType = e.target.value;
     onLayoutChange(nextLayout);
   };
 
   const CustomContent = () => {
-    console.log(graph);
     const options: ToolBarItemType[] = [
       {
         key: 'layout',
@@ -36,8 +42,9 @@ const Control: React.FC<{
       },
       {
         key: 'fullscreen',
-        name: <FullscreenOutlined />,
-        description: '全屏',
+        name: fullscreen ? <FullscreenOutlined /> : <FullscreenOutlined />,
+        description: fullscreen ? '还原' : '全屏',
+        action: toggleFullscreen,
       },
       {
         key: 'zoomOut',

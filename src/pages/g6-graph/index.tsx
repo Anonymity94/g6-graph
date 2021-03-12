@@ -17,6 +17,8 @@ const {
 
 export const DEFAULT_LAYOUT_TYPE = EGraphLayoutType['graphin-force'];
 
+export const GRAPHIN_CONTAINER_DOM_ID = 'graphin-container';
+
 /**
  * 默认布局
  */
@@ -108,7 +110,7 @@ const G6Graph: React.FC<IG6GraphProps> = ({ data }) => {
   };
 
   return (
-    <div>
+    <div id={GRAPHIN_CONTAINER_DOM_ID}>
       <Graphin
         style={{ height: '100vh' }}
         // theme={{ mode: 'dark' }}
