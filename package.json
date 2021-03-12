@@ -3,11 +3,19 @@
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
+    "deploy": "bash deploy.sh",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:Anonymity94/g6-graph.git"
+  },
+  "homepage": "http://anonymity94.github.io/g6-graph",
+  "author": "1176989591@qq.com",
+  "license": "ISC",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
