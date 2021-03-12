@@ -85,6 +85,15 @@ const Control: React.FC<{
         name: <SaveOutlined />,
         description: '保存成图片',
         action: () => {
+          // 使用G6自带的方法导出图片
+          // https://antv-g6.gitee.io/zh/docs/api/graphFunc/download/#graphdownloadfullimagename-type-imageconfig
+          graph.downloadFullImage('graph', 'image/png', {
+            // 不传值时将导出透明背景的图片
+            // backgroundColor: '#fff',
+            padding: 10,
+          });
+          return;
+
           // https://g6.antv.vision/zh/docs/api/graphFunc/download/#graphtofulldataurlcallback-type-imageconfig
           graph.toFullDataURL(
             // 第一个参数为 callback，必须
