@@ -9,7 +9,7 @@
  */
 export const saveAsImage = (
   url: string,
-  type: 'png' | 'svg',
+  type: 'png' | 'jpg',
   title: string,
 ) => {
   const $a = document.createElement('a');
