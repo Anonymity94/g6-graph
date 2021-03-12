@@ -8,6 +8,7 @@ import Graphin, {
 import React, { useState } from 'react';
 import Control from './components/Control';
 import { EGraphLayoutType } from './components/Control/typings';
+import Statistic from './components/Statistic';
 const {
   ZoomCanvas,
   DragNodeWithForce,
@@ -130,6 +131,8 @@ const G6Graph: React.FC<IG6GraphProps> = ({ data }) => {
         <DragNode />
         {/* 工具栏 */}
         <Control layoutType={layout.type} onLayoutChange={handleLayoutChange} />
+        {/* 统计信息 */}
+        <Statistic />
       </Graphin>
     </div>
   );
