@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import Control from './components/Control';
 import { EGraphLayoutType } from './components/Control/typings';
 import Statistic from './components/Statistic';
+import 'antd/dist/antd.less';
 const {
   ZoomCanvas,
   DragNodeWithForce,
@@ -34,7 +35,7 @@ const defaultLayout = {
 
 /**
  * 边的默认样式
- *
+ * 
  * @see: https://github.com/antvis/Graphin/pull/231
  */
 const defaultEdge: Partial<EdgeStyle> = {
@@ -55,8 +56,8 @@ const defaultEdge: Partial<EdgeStyle> = {
 
 /**
  * 节点的默认样式
- *
- *  @see: https://github.com/antvis/Graphin/pull/231
+ * 
+ * @see: https://github.com/antvis/Graphin/pull/231
  */
 const defaultNode: Partial<NodeStyle> = {
   // type: 'graphin-circle',

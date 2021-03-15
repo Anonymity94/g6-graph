@@ -14,7 +14,7 @@ import React from 'react';
 import { GRAPHIN_CONTAINER_DOM_ID } from '../..';
 import { saveAsImage } from '../../utils';
 import useFullscreen from '../useFullscreen';
-import styles from './index.less';
+import styles from './index.module.less';
 import { graphLayoutConfig } from './LayoutConfig';
 import { EGraphLayoutType } from './typings';
 
