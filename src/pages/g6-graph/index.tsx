@@ -1,14 +1,15 @@
 import Graphin, {
   Behaviors,
-  EdgeStyle,
   GraphinData,
   Layout,
   NodeStyle,
+  ThemeType,
 } from '@antv/graphin';
 import React, { useState } from 'react';
 import Control from './components/Control';
 import { EGraphLayoutType } from './components/Control/typings';
 import Statistic from './components/Statistic';
+import { edgeStyleMap, EThemeMode, nodeStyleMap } from './theme';
 const {
   ZoomCanvas,
   DragNodeWithForce,
@@ -32,56 +33,11 @@ const defaultLayout = {
   // animation: false,
 };
 
-/**
- * 边的默认样式
- *
- * @see: https://github.com/antvis/Graphin/pull/231
- */
-const defaultEdge: Partial<EdgeStyle> = {
-  // @ts-ignore
-  style: {
-    keyshape: {
-      // 边的颜色
-      // stroke: '#3274b6',
-      stroke: '#004250',
-      // 尾箭头
-      endArrow: {
-        path: 'M 0,0 L 0, 0',
-        fill: '#545872',
-      },
-    },
-  },
-};
-
-/**
- * 节点的默认样式
- *
- *  @see: https://github.com/antvis/Graphin/pull/231
- */
-const defaultNode: Partial<NodeStyle> = {
-  // type: 'graphin-circle',
-  // type: 'concentric',
-  style: {
-    // 节点的样式
-    keyshape: {
-      // 填充色
-      fill: '#0085a1',
-      // 包围边的颜色
-      stroke: '#004250',
-      // 包围线的宽度
-      lineWidth: 3,
-      // 节点大小
-      size: 20,
-    },
-    // 光晕
-    halo: {},
-  },
-};
-
 const defaultNodeStatusStyle = {
   status: {
     hover: {
       halo: {
+        fill: '#33363c',
         animate: {
           attrs: (ratio: number) => {
             const startR = 20;
@@ -103,9 +59,16 @@ const defaultNodeStatusStyle = {
 
 interface IG6GraphProps {
   data: GraphinData;
+  /**
+   * 主题类型
+   */
+  themeMode?: ThemeType['mode'];
 }
 
-const G6Graph: React.FC<IG6GraphProps> = ({ data }) => {
+const G6Graph: React.FC<IG6GraphProps> = ({
+  themeMode = EThemeMode.DARK,
+  data,
+}) => {
   const [layout, setLayout] = useState<Layout & { type: EGraphLayoutType }>(
     defaultLayout,
   );
@@ -117,11 +80,15 @@ const G6Graph: React.FC<IG6GraphProps> = ({ data }) => {
     });
   };
 
+  // 根据主题的颜色，动态修改样式
+  const defaultNode = nodeStyleMap[themeMode];
+  const defaultEdge = edgeStyleMap[themeMode];
+
   return (
     <div id={GRAPHIN_CONTAINER_DOM_ID}>
       <Graphin
+        theme={{ mode: themeMode }}
         style={{ height: '100vh' }}
-        // theme={{ mode: 'dark' }}
         data={data}
         layout={layout}
         defaultNode={defaultNode}
