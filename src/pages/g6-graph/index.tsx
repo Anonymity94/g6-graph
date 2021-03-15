@@ -34,22 +34,29 @@ const defaultLayout = {
 
 /**
  * 边的默认样式
+ *
+ * @see: https://github.com/antvis/Graphin/pull/231
  */
 const defaultEdge: Partial<EdgeStyle> = {
-  keyshape: {
-    // 边的颜色
-    // stroke: '#3274b6',
-    stroke: '#004250',
-    // 尾箭头
-    endArrow: {
-      path: 'M 0,0 L 0, 0',
-      fill: '#545872',
+  // @ts-ignore
+  style: {
+    keyshape: {
+      // 边的颜色
+      // stroke: '#3274b6',
+      stroke: '#004250',
+      // 尾箭头
+      endArrow: {
+        path: 'M 0,0 L 0, 0',
+        fill: '#545872',
+      },
     },
   },
 };
 
 /**
  * 节点的默认样式
+ *
+ *  @see: https://github.com/antvis/Graphin/pull/231
  */
 const defaultNode: Partial<NodeStyle> = {
   // type: 'graphin-circle',
